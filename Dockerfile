@@ -55,6 +55,6 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Retrieve packages from build stage.
-COPY --from=builder /project/venv /project/venv
+COPY --from=prod-build /project/venv /project/venv
 
 CMD [ "python3", "-c", "print('hello world')" ]
