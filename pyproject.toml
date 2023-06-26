@@ -26,3 +26,5 @@ dev = [
 
 [tool.pdm.scripts]
 test = "pytest"
+lint = "mypy src/"
+all = {composite = ["lint", "test"]}

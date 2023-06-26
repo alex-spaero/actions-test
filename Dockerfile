@@ -24,17 +24,28 @@ COPY pyproject.toml pdm.lock README.md /project/
 WORKDIR /project
 RUN pdm config check_update false \
     && pdm venv create --with-pip --name $VENV_NAME python3  \
-    && pdm install --skip :all --venv $VENV_NAME --prod --no-self --no-lock --no-editable
+    && pdm use --venv=$VENV_NAME
 
+FROM builder as prod-build
+
+RUN pdm install --skip :all --prod --no-self --no-lock --no-editable
 # Install the project.
 COPY src/ /project/src
-RUN pdm install --skip :all --venv $VENV_NAME --prod --no-lock --no-editable
+RUN pdm install --skip :all --prod --no-lock --no-editable
 
 # Move PDM venv to a standard location to grab for the final image.
 RUN sh -c "mv $(pdm venv --path $VENV_NAME) /project/venv"
 
 
 # Final image.
+FROM builder AS dev
+
+RUN pdm install --skip :all --dev --no-self --no-lock --no-editable
+COPY src/ /project/src
+RUN pdm install --skip :all --dev --no-lock --no-editable
+CMD [ "pdm", "all" ]
+
+
 FROM base
 RUN apt-get update \
 	&& apt-get install --no-install-recommends -y \

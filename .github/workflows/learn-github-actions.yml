@@ -8,18 +8,8 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pdm-project/setup-pdm@v3
-        name: Setup PDM
-        with:
-          python-version: 3.9
-          architecture: x64
-          version: 2.7.0
-          cache: true
-      - name: Install dependencies
-        run: pdm install
-      - name: Test
-        run: pdm test
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@ecf95283f03858871ff00b787d79c419715afc34
 
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
@@ -28,16 +18,26 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
+      - name: Build development Docker image
+        uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+        id: dev-build
+        with:
+          context: .
+          push: false
+          target: dev
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Test development Docker image
+        run: docker run ${{ steps.dev-build.outputs.imageid }} pdm all
+
+      - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Setup docker builder
-        run: docker buildx create --use --driver=docker-container
-
-      - name: Build and push Docker image
+      - name: Build and push production Docker image
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
         with:
           context: .
@@ -46,5 +46,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-
