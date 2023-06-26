@@ -22,7 +22,6 @@ jobs:
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
         id: dev-build
         with:
-          context: .
           push: false
           target: dev
           cache-from: type=gha
@@ -40,7 +39,6 @@ jobs:
       - name: Build and push production Docker image
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
         with:
-          context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
