@@ -2,7 +2,7 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - uses: pdm-project/setup-pdm@v3
@@ -11,6 +11,8 @@ jobs:
           python-version: 3.9
           architecture: x64
           version: 2.7.0
+      - name: check
+        run: bash -c "pwd && ls -la"
       - name: Install dependencies
         run: pdm install
       - name: Test
