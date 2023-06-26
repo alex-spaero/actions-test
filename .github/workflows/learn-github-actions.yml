@@ -1,0 +1,17 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pdm-project/setup-pdm@v3
+        name: Setup PDM
+        with:
+          python-version: 3.9
+          architecture: x64
+          version: 2.7.0
+      - name: Install dependencies
+        run: pdm install
+      - name: Test
+        run: pdm test
