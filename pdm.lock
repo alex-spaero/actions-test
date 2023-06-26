@@ -8,6 +8,8 @@ requires_python = ">=3.7.2"
 summary = "An abstract syntax tree for Python with inference support."
 dependencies = [
     "lazy-object-proxy>=1.4.0",
+    "typing-extensions>=4.0.0; python_version < \"3.11\"",
+    "wrapt<2,>=1.11; python_version < \"3.11\"",
     "wrapt<2,>=1.14; python_version >= \"3.11\"",
 ]
 
@@ -18,6 +20,7 @@ requires_python = ">=3.6"
 summary = "A tool that automatically formats Python code to conform to the PEP 8 style guide"
 dependencies = [
     "pycodestyle>=2.10.0",
+    "tomli; python_version < \"3.11\"",
 ]
 
 [[package]]
@@ -37,6 +40,12 @@ name = "docstring-to-markdown"
 version = "0.12"
 requires_python = ">=3.6"
 summary = "On the fly conversion of Python docstrings to markdown"
+
+[[package]]
+name = "exceptiongroup"
+version = "1.1.1"
+requires_python = ">=3.7"
+summary = "Backport of PEP 654 (exception groups)"
 
 [[package]]
 name = "flake8"
@@ -98,6 +107,7 @@ requires_python = ">=3.7"
 summary = "Optional static typing for Python"
 dependencies = [
     "mypy-extensions>=1.0.0",
+    "tomli>=1.1.0; python_version < \"3.11\"",
     "typing-extensions>=4.1.0",
 ]
 
@@ -166,11 +176,14 @@ summary = "python code static checker"
 dependencies = [
     "astroid<=2.17.0-dev0,>=2.15.4",
     "colorama>=0.4.5; sys_platform == \"win32\"",
+    "dill>=0.2; python_version < \"3.11\"",
     "dill>=0.3.6; python_version >= \"3.11\"",
     "isort<6,>=4.2.5",
     "mccabe<0.8,>=0.6",
     "platformdirs>=2.2.0",
+    "tomli>=1.1.0; python_version < \"3.11\"",
     "tomlkit>=0.10.1",
+    "typing-extensions>=3.10.0; python_version < \"3.10\"",
 ]
 
 [[package]]
@@ -180,9 +193,11 @@ requires_python = ">=3.7"
 summary = "pytest: simple powerful testing with Python"
 dependencies = [
     "colorama; sys_platform == \"win32\"",
+    "exceptiongroup>=1.0.0rc8; python_version < \"3.11\"",
     "iniconfig",
     "packaging",
     "pluggy<2.0,>=0.12",
+    "tomli>=1.0.0; python_version < \"3.11\"",
 ]
 
 [[package]]
@@ -234,6 +249,7 @@ requires_python = ">=3.7"
 summary = "Python tool configuration"
 dependencies = [
     "packaging>=22.0",
+    "tomli>=2.0.1; python_version < \"3.11\"",
 ]
 
 [[package]]
@@ -324,7 +340,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 lock_version = "4.2"
 cross_platform = true
 groups = ["default", "dev"]
-content_hash = "sha256:e024322932c00ba29c2d272d3e1f92d0efc2b686acf8affb2504350afdda5989"
+content_hash = "sha256:6df557c2417085bdd8943c53fc0c6b3cc768046b14dfed622ec801c6ac3d7929"
 
 [metadata.files]
 "astroid 2.15.5" = [
@@ -346,6 +362,10 @@ content_hash = "sha256:e024322932c00ba29c2d272d3e1f92d0efc2b686acf8affb2504350af
 "docstring-to-markdown 0.12" = [
     {url = "https://files.pythonhosted.org/packages/52/c2/6f73c08b97bacd1242835bdca1cfc123b059eb15af9350eb1eb5d58868fc/docstring-to-markdown-0.12.tar.gz", hash = "sha256:40004224b412bd6f64c0f3b85bb357a41341afd66c4b4896709efa56827fb2bb"},
     {url = "https://files.pythonhosted.org/packages/c9/b6/6a773dbed890800e32485b0e7d10a5653bc12ad6dabe94bd16cc428314ae/docstring_to_markdown-0.12-py3-none-any.whl", hash = "sha256:7df6311a887dccf9e770f51242ec002b19f0591994c4783be49d24cdc1df3737"},
+]
+"exceptiongroup 1.1.1" = [
+    {url = "https://files.pythonhosted.org/packages/61/97/17ed81b7a8d24d8f69b62c0db37abbd8c0042d4b3fc429c73dab986e7483/exceptiongroup-1.1.1-py3-none-any.whl", hash = "sha256:232c37c63e4f682982c8b6459f33a8981039e5fb8756b2074364e5055c498c9e"},
+    {url = "https://files.pythonhosted.org/packages/cc/38/57f14ddc8e8baeddd8993a36fe57ce7b4ba174c35048b9a6d270bb01e833/exceptiongroup-1.1.1.tar.gz", hash = "sha256:d484c3090ba2889ae2928419117447a14daf3c1231d5e30d0aae34f354f01785"},
 ]
 "flake8 6.0.0" = [
     {url = "https://files.pythonhosted.org/packages/66/53/3ad4a3b74d609b3b9008a10075c40e7c8909eae60af53623c3888f7a529a/flake8-6.0.0.tar.gz", hash = "sha256:c61007e76655af75e6785a931f452915b371dc48f56efd765247c8fe68f2b181"},
