@@ -1,5 +1,5 @@
 name: Build and test
-run-name: [ ${{ github.event_name }} ] event triggered by ${{ github.actor }}
+run-name: ${{ github.event_name }} event triggered by ${{ github.actor }}
 on: [push]
 env:
   REGISTRY: ghcr.io
