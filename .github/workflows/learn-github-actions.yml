@@ -20,15 +20,16 @@ jobs:
 
       - name: Build development Docker image
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
-        id: dev-build
+        id: devbuild
         with:
           push: false
           target: dev
+          tags: dev
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Test development Docker image
-        run: docker run ${{ steps.dev-build.outputs.imageid }} pdm all
+        run: docker run dev pdm all
 
       - name: Extract metadata for Docker
         id: meta
