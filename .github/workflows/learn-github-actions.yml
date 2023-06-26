@@ -11,8 +11,7 @@ jobs:
           python-version: 3.9
           architecture: x64
           version: 2.7.0
-      - name: check
-        run: bash -c "pwd && ls -la"
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: pdm install
       - name: Test
