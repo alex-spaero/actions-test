@@ -11,6 +11,7 @@ jobs:
           python-version: 3.9
           architecture: x64
           version: 2.7.0
+          cache: yes
       - uses: actions/checkout@v3
       - name: Install dependencies
         run: pdm install
