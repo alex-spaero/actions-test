@@ -29,7 +29,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Test development Docker image
-        run: docker run ${{ steps.devbuild.outputs.digest }} pdm all
+        run: docker run ${{ steps.devbuild.outputs.imageid }} pdm all
 
       - name: Extract metadata for Docker
         id: meta
