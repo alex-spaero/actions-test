@@ -1,5 +1,5 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: Build and test
+run-name: Triggered by ${{ github.event_name }} from ${{ github.actor }}
 on: [push]
 env:
   REGISTRY: ghcr.io
