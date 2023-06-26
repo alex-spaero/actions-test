@@ -46,4 +46,4 @@ RUN apt-get update \
 # Retrieve packages from build stage.
 COPY --from=builder /project/venv /project/venv
 
-CMD [ "python3", "-c", "print('hello')" ]
+CMD [ "python3", "-c", "print('hello world')" ]
