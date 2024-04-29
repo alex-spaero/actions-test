@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+env:
+  BRANCH_NAME: ${{ github.head_ref }}
+  IMAGE_NAME: ${{ github.repository }}
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -20,6 +23,6 @@ jobs:
           load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-    
+
       - name: Test development Docker image
         run: docker run ${{ steps.devbuild.outputs.imageid }} pdm all
