@@ -1,4 +1,4 @@
-name: Build and test
+name: tester
 run-name: "Pull request by ${{ github.actor }}: ${{ github.event.pull_request.title }}"
 on:
   pull_request:
@@ -10,9 +10,9 @@ on:
       - main
       - dev
 env:
-  HEAD_REF: ${{ github.head_ref }}
+  HEAD_REF: ${{ github.base_ref }}
   REF_NAME: ${{ github.ref_name }}
-  OR: ${{ github.head_ref || github.ref_name }}
+  OR: ${{ github.base_ref || github.ref_name }}
   IMAGE_NAME: ${{ github.repository }}
 jobs:
   tests:
