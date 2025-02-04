@@ -1,0 +1,9 @@
+name: Create Staging Pull Requests
+run-name: "Pull request by ${{ github.actor }}: ${{ github.event.pull_request.title }}"
+on: workflow_dispatch
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tester
+        uses: gh --help
