@@ -5,5 +5,5 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Tester
-        run: gh --help
+      - name: Create staging PR
+        run: gh pr create --base staging --head --fill
