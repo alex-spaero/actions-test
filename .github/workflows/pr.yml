@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+      - staging
+      - dev
 env:
   BRANCH_NAME: ${{ github.head_ref }}
   IMAGE_NAME: ${{ github.repository }}
