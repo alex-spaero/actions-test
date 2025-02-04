@@ -7,3 +7,5 @@ jobs:
     steps:
       - name: Create staging PR
         run: gh pr create --base staging --head --fill
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
