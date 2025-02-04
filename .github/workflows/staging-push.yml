@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create staging PR
-        run: gh pr create --base staging --head --fill --title "staging push"
+        run: gh pr create --base staging --head dev --fill --title "staging push"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
