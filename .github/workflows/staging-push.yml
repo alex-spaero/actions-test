@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Tester
-        uses: gh --help
+        run: gh --help
